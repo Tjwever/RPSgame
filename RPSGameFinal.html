@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game</title>
+</head>
+<body>
+    <script>      
+
+        const youWin = 'Round won!';
+        const youLose = 'Round lost!';
+        const youTie = 'Draw game!  Try again...';
+        let userScore = 0;
+        let cpuScore = 0;
+
+        function playRound(playerSelection, computerSelection) {
+
+            switch (playerSelection + computerSelection) {
+                case 'rockscissors':
+                case 'paperrock':
+                case 'scissorspaper':
+                    return youWin;
+                    break;    
+                case 'rockpaper':
+                case 'paperscissors':
+                case 'scissorsrock':
+                    return youLose;
+                    break;
+                case 'rockrock':
+                case 'paperpaper':
+                case 'scissorsscissors':
+                    return youTie;
+                    break;
+                default:
+                    return 'That is not Rock, Paper, or Scissors';
+                    break;        
+            }
+                                    
+        }
+
+        function computerPlay() {
+                let selection = ['rock', 'paper', 'scissors'];
+                let cpuChoice = selection[Math.floor(Math.random() * selection.length)];
+                return cpuChoice;
+            }
+
+        function game() {
+
+            const playerSelection = prompt('Pick either: Rock, Paper, or Scissors');
+            const computerSelection = computerPlay();
+
+            console.log('You chose ' + playerSelection);            
+            console.log('The Computer chose ' + computerSelection);
+            console.log(playRound(playerSelection.toLowerCase(), computerSelection));
+
+            if (playRound(playerSelection.toLowerCase(), computerSelection) === youWin) {
+            userScore++;
+            }
+            else if (playRound(playerSelection.toLowerCase(), computerSelection) === youLose) {
+                cpuScore++;
+            }
+            else {
+                userScore;
+                cpuScore;
+            }
+
+            console.log(userScore + ' : ' + cpuScore);
+
+        }
+
+        let i = 0;
+        for(i; i <= 4; i++) {
+            game();
+        }
+
+        if(userScore > cpuScore){
+                console.log('Game over.  You WIN!');
+            }
+            else if(cpuScore > userScore){
+                console.log('Game over.  You LOST!');
+            }
+            else{
+                console.log('Game over. Draw Game...');
+            }
+
+    </script>
+</body>
+</html>
